@@ -1,0 +1,11 @@
+.header{
+  background-color: $color_primary_dark;
+  height: 60px;
+  .logo{
+    font-weight: 600;
+    color: $color_secondary;
+    span{
+      color: $color_primary;
+    }
+  }
+}
