@@ -1,9 +1,9 @@
 import Layout from "@/components/layout/layout"
 
-const Cricket = ()=>{
+const CricketNews = ()=>{
     return <Layout>
-        Cricket
+        new ssiandlvkn
     </Layout>
 }
 
-export default Cricket
+export default CricketNews

@@ -1,13 +1,22 @@
-const { Breadcrumb } = require("react-bootstrap")
+const { Breadcrumb } = require("react-bootstrap");
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-const CustomBreadcrumbs = ()=>{
-    return <Breadcrumb>
-    <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-    <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
-      Library
-    </Breadcrumb.Item>
-    <Breadcrumb.Item active>Data</Breadcrumb.Item>
-  </Breadcrumb>
-}
+const CustomBreadcrumbs = () => {
+  const router = useRouter();
+
+  const path = router.asPath.split("/")[1];
+
+  return (
+    <Breadcrumb>
+      <Breadcrumb.Item>
+        <Link href="/">home</Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <Link href={`/${path}`}>{path}</Link>
+      </Breadcrumb.Item>
+    </Breadcrumb>
+  );
+};
 
 export default CustomBreadcrumbs;
