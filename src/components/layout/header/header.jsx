@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 
 import styles from "./header.module.scss";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -35,7 +36,7 @@ const Header = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="/" >Home</Nav.Link>
+              <Link href="/" >Home</Link>
              
               <NavDropdown
                 title="Categories"
@@ -49,8 +50,8 @@ const Header = () => {
                 <NavDropdown.Item href="#action5">
                   Cricket
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action5">
-                  Trending
+                <NavDropdown.Item >
+                  <Link href='/trending'>Trending</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action5">
                   Random
