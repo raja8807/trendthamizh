@@ -1,11 +1,31 @@
-.header{
+.header {
   background-color: $color_primary_dark;
   height: 60px;
-  .logo{
-    font-weight: 600;
-    color: $color_secondary;
-    span{
-      color: $color_primary;
+}
+.offcanvas {
+  background-color: $color_primary_dark !important;
+  color: $color_primary_light;
+
+  a {
+    color: $color_primary_light;
+    font-size: 15px;
+    &:hover {
+      color: $color_secondary;
     }
+  }
+
+  div[class*="dropdown-menu"] {
+    background-color: $color_primary_dark !important;
+    padding: 0;
+
+    span {
+      display: block;
+      margin-left: 20px;
+    }
+  }
+}
+.active {
+  a {
+    color: $color_primary;
   }
 }

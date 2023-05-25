@@ -1,0 +1,36 @@
+.footer {
+  background-color: $color_primary_dark;
+  color: $color_primary_light;
+  padding: 10px 0px;
+
+  h4 {
+    font-size: 16px;
+    color: $color_primary;
+  }
+  a {
+    font-size: 14px;
+    color: $color_primary_light;
+    font-weight: 100;
+    color: $color_secondary;
+    margin: 3px 0px;
+
+    &:hover {
+      color: $color_primary;
+    }
+  }
+
+  hr {
+    background-color: $color_primary_light;
+  }
+  .centered_row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >span {
+      font-size: 12px;
+      color: $color_primary;
+      margin: 0px 5px;
+    }
+  }
+}

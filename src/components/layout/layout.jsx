@@ -5,6 +5,7 @@ import Header from "./header/header";
 import styles from "./layout.module.scss";
 import SideBar from "./side-bar/side_bar";
 import Head from "next/head";
+import Footer from "./footer/footer";
 // import Home from "../home/home"
 
 const Layout = ({ children }) => {
@@ -20,20 +21,20 @@ const Layout = ({ children }) => {
       <Header />
       <Container>
             <br/>
-          <CustomBreadcrumbs />
+          {/* <CustomBreadcrumbs /> */}
         <div className={styles.body}>
-        <br/>
          <Row>
-            <Col sm={12} xl={9}>
+            <Col sm={12} xl={8}>
             {children}
             <br/>
             </Col>
-            <Col sm={12} xl={3}>
+            <Col sm={12} xl={4}>
             <SideBar/>
             </Col>
          </Row>
         </div>
       </Container>
+      <Footer/>
     </div>
    </>
   );

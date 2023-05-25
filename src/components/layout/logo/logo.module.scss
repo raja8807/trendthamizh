@@ -1,0 +1,15 @@
+.logo {
+  position: relative;
+  font-weight: 500;
+  color: $color_secondary;
+  span {
+    color: $color_primary;
+  }
+  sup {
+    position: absolute;
+    font-weight: normal;
+    color: $color_primary_light;
+    font-size: 12px;
+    top: 10px;
+  }
+}

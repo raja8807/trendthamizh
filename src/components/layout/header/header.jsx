@@ -7,58 +7,139 @@ import {
   Navbar,
   NavDropdown,
   Offcanvas,
-  Row,
 } from "react-bootstrap";
 
 import styles from "./header.module.scss";
+import Logo from "../logo/logo";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+const headerItems = [
+  {
+    name: "Home",
+    type: "link",
+    href: "",
+  },
+  {
+    name: "Categories",
+    type: "dropdown",
+    items: [
+      {
+        name: "News",
+        type: "link",
+        href: "news",
+      },
+      {
+        name: "Cricket",
+        type: "link",
+        href: "cricket",
+      },
+      {
+        name: "Cinema",
+        type: "link",
+        href: "cinema",
+      },
+      {
+        name: "Trending",
+        type: "link",
+        href: "trending",
+      },
+      {
+        name: "Random",
+        type: "link",
+        href: "random",
+      },
+    ],
+  },
+  {
+    name: "About",
+    type: "link",
+    href: "about",
+  },
+  {
+    name: "Contact us",
+    type: "link",
+    href: "contact",
+  },
+];
 
 const Header = () => {
+  const router = useRouter();
+  const paths = router?.pathname?.split("/");
+  console.log(paths);
+
   return (
-   <>
-    <Navbar className={styles.header} variant="dark" expand="lg" collapseOnSelect sticky="top">
+    <Navbar
+      className={styles.header}
+      variant="dark"
+      expand="lg"
+      collapseOnSelect
+    >
       <Container>
-        <Navbar.Brand href="#home" className={styles.logo}>
-          <h2>
-            Tren<span>Thamizh</span>
-          </h2>
+        <Navbar.Brand>
+          <Link href="/">
+            <Logo />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-navbar`} />
         <Navbar.Offcanvas
+          className={styles.offcanvas}
           id={`offcanvasNavbar-expand-navbar`}
           aria-labelledby={`offcanvasNavbarLabel-expand-navbar`}
           placement="end"
         >
-          <Offcanvas.Header closeButton>
+          <Offcanvas.Header closeButton className={styles.offcanvas}>
             <Offcanvas.Title id={`offcanvasNavbarLabel-expand-navbar`}>
-              Offcanvas
+              <Navbar.Brand>
+                <Link href="/">
+                  <Logo />
+                </Link>
+              </Navbar.Brand>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Link href="/" >Home</Link>
-             
-              <NavDropdown
-                title="Categories"
-                id={`offcanvasNavbarDropdown-expand-navbar`}
-              >
-                <NavDropdown.Item href="#action3">News</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">
-                  Cinema
-                </NavDropdown.Item>
-                {/* <NavDropdown.Divider /> */}
-                <NavDropdown.Item href="#action5">
-                  Cricket
-                </NavDropdown.Item>
-                <NavDropdown.Item >
-                  <Link href='/trending'>Trending</Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action5">
-                  Random
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#action2">About Us</Nav.Link>
-              <Nav.Link href="#actionx">Contact Us</Nav.Link>
+              {headerItems.map((item) => {
+                const isHome = item.name === "Home";
+               
+                return item.type === "link" ? (
+                  <Navbar.Text
+                    key={item.name}
+                    className={
+                      paths?.includes(item?.href)
+                        ? styles?.active
+                        : styles?.inactive
+                    }
+                  >
+                    <Link href={"/" + item?.href}>{item.name}</Link>
+                    &nbsp; &nbsp; &nbsp;
+                  </Navbar.Text>
+                ) : (
+                  <>
+                    <NavDropdown
+                      title={item.name}
+                      id={`offcanvasNavbarDropdown-expand-navbar`}
+                    >
+                      {item.items.map((item) => {
+                        console.log(paths?.includes(item?.href));
+                        return (
+                          <Navbar.Text
+                            key={item.name}
+                            className={
+                              paths?.includes(item?.href)
+                                ? styles?.active
+                                : styles?.inactive
+                            }
+                          >
+                            <Link href={"/" + item?.href}>{item.name}</Link>
+                          </Navbar.Text>
+                        );
+                      })}
+                    </NavDropdown>
+                    &nbsp; &nbsp; &nbsp;
+                  </>
+                );
+              })}
             </Nav>
             <Form className="d-flex">
               <Form.Control
@@ -73,7 +154,6 @@ const Header = () => {
         </Navbar.Offcanvas>
       </Container>
     </Navbar>
-   </>
   );
 };
 

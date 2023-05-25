@@ -1,0 +1,11 @@
+.breadcrumbs {
+  li[class*='breadcrumb-item'] + li[class*='breadcrumb-item']::before {
+    content: ">" !important;
+  }
+
+  li[class*='active']{
+    a{
+      color: $color_secondary !important;
+    }
+  }
+}
