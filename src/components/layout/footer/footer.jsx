@@ -7,14 +7,14 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <Container>
-        <Row sm={12}>
+        <Row xs={12}>
           <Col className={styles.centered_row}>
             <Logo/>
           </Col>
         </Row>
         <hr />
         <Row>
-          <Col sm={6} md={4}>
+          <Col xs={6} md={4}>
             <h4>Links</h4>
             <ul>
               <li>
@@ -34,8 +34,8 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col sm={6} md={4}>
-            <h4>Browse Category</h4>
+          <Col xs={6} md={4}>
+            <h4>Browse By Category</h4>
             <ul>
               <li>
                 <Row>

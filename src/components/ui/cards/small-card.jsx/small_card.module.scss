@@ -1,0 +1,21 @@
+.small_card {
+  min-width: 200px;
+  padding: 2px;
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+
+  .small_card_title {
+    margin: 10px 0px;
+    font-size: 14px;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+}

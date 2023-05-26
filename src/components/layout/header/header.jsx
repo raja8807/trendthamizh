@@ -66,7 +66,6 @@ const headerItems = [
 const Header = () => {
   const router = useRouter();
   const paths = router?.pathname?.split("/");
-  console.log(paths);
 
   return (
     <Navbar
@@ -74,6 +73,7 @@ const Header = () => {
       variant="dark"
       expand="lg"
       collapseOnSelect
+      sticky="top"
     >
       <Container>
         <Navbar.Brand>
@@ -101,7 +101,7 @@ const Header = () => {
             <Nav className="justify-content-end flex-grow-1 pe-3">
               {headerItems.map((item) => {
                 const isHome = item.name === "Home";
-               
+
                 return item.type === "link" ? (
                   <Navbar.Text
                     key={item.name}
@@ -121,7 +121,6 @@ const Header = () => {
                       id={`offcanvasNavbarDropdown-expand-navbar`}
                     >
                       {item.items.map((item) => {
-                        console.log(paths?.includes(item?.href));
                         return (
                           <Navbar.Text
                             key={item.name}

@@ -1,0 +1,38 @@
+.article {
+  .details{
+    display: flex; 
+    justify-content: space-between;
+  }
+    small{
+      color: grey;
+    }
+    .image_container {
+      img {
+        width: 100%;
+        height: auto;
+    }
+    margin: 50px 0px;
+    }
+
+
+    .article_footer{
+      display: flex;
+      justify-content: space-between;
+      .tags{
+          display: flex;
+          gap: 10px;
+  
+          .badge{
+              background-color: $color_secondary !important;
+              color: $color_primary_light;
+  
+              &:hover{
+                  background-color: $color_primary !important;
+              }
+          }
+      }
+
+    }
+
+  }
+  

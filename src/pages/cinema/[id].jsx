@@ -1,6 +1,6 @@
 import Layout from "@/components/layout/layout";
 
-import Article from "@/components/article/atricle";
+import Article from "@/components/articles/article-list/article/atricle";
 
 const CricketNews = () => {
   return (

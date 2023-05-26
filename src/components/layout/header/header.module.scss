@@ -7,10 +7,10 @@
   color: $color_primary_light;
 
   a {
-    color: $color_primary_light;
+    color: $color_primary_light !important;
     font-size: 15px;
     &:hover {
-      color: $color_secondary;
+      color: $color_secondary !important;
     }
   }
 
@@ -26,6 +26,6 @@
 }
 .active {
   a {
-    color: $color_primary;
+    color: $color_primary !important;
   }
 }
