@@ -60,6 +60,8 @@ const Article = (props) => {
     return date.toDateString();
   };
 
+  console.log(articleData?.bannerImage?.src);
+
   return (
     <article className={styles.article}>
       <div>
@@ -78,12 +80,12 @@ const Article = (props) => {
         </div>
         <br />
         <Figure>
-          <Link href={articleData?.bannerImage?.src}>
+          {/* <Link href={articleData?.bannerImage?.src}> */}
             <Figure.Image
               src={articleData?.bannerImage?.src}
               alt={articleData?.bannerImage?.name}
             />
-          </Link>
+          {/* </Link> */}
           {/* <Figure.Caption>Source : {image.source}</Figure.Caption> */}
         </Figure>
       </div>

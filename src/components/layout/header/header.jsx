@@ -65,7 +65,7 @@ const headerItems = [
 
 const Header = () => {
   const router = useRouter();
-  const paths = router?.pathname?.split("/");
+  const paths = router.pathname?.split("/");
 
   return (
     <Navbar

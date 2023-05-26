@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 
 const CricketNews = () => {
   const router = useRouter();
-  const { id } = router?.query;
-  console.log(id);
+  const { id } = router.query;
+
   const articleData = cricketArticlesList.find((article) => article?.id === id);
 
   return (
