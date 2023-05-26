@@ -80,13 +80,11 @@ const Article = (props) => {
         </div>
         <br />
         <Figure>
-          {/* <Link href={articleData?.bannerImage?.src}> */}
             <Figure.Image
               src={articleData?.bannerImage?.src}
               alt={articleData?.bannerImage?.name}
             />
-          {/* </Link> */}
-          {/* <Figure.Caption>Source : {image.source}</Figure.Caption> */}
+
         </Figure>
       </div>
 
