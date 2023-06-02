@@ -2,14 +2,13 @@ import ArticleList from "@/components/articles/article-list/article-list";
 import Layout from "@/components/layout/layout";
 import PageHeading from "@/components/ui/page-heading/page_heading";
 
-
-const Cricket = () => {
+const Sports = () => {
   return (
     <Layout>
-        <PageHeading heading='Cricket'/>
+      <PageHeading heading="Sports" />
       <ArticleList />
     </Layout>
   );
 };
 
-export default Cricket;
+export default Sports;

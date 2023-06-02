@@ -17,8 +17,8 @@ const categories = [
    
   },
   {
-    id: "cricket",
-    title: "Cricket",
+    id: "sports",
+    title: "Sports",
 
   },
   {

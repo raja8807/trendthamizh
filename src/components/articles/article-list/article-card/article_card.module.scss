@@ -1,9 +1,13 @@
 .article_preview {
   margin: 15px 0px;
-  
-  .article_preview_card{
-      border: none ;
 
+  .article_preview_card {
+    border: none;
+    h2 {
+      font-size: 18px;
+      color: $color_secondary;
+      font-weight: 600;
+    }
   }
 
   .article_preview_image {
@@ -26,10 +30,10 @@
       }
     }
 
-    .share_btns{
-        position: absolute;
-        top: 10px;
-        right: 10px;
+    .share_btns {
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
   }
 }

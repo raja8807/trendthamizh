@@ -1,6 +1,7 @@
 [
   {
     "id": "i3r70dsd23ubiebfi",
+    "title" : "No-Rest_for_Dhoni_this-Year",
     "heading": "இந்த வருடம் ஓய்வு இல்லை.. ஆனால்.. கேப்டன் மாற்றம்? இதுதான் சிஎஸ்கே தோனியின் பிளான்? கேப்டன் அவரா?",
     "createdBy": "Raja",
     "createdAt": "2023-05-26T20:21:39.348Z",
@@ -9,6 +10,7 @@
       "name": "Creicket Image",
       "src": "/images/categories/cricket.jpg"
     },
+    "youtubeLink" : "https://youtu.be/tyvnX5_ArB8",
     "images": [
       {
         "src": "https://assets.bcci.tv/bcci/photos/1043/842dee7a-f6b7-4e80-83ff-4fbdfe44eb11.jpg",
@@ -46,6 +48,9 @@
   },
   {
     "id": "i3r709r323ubasafi",
+    "title" : "This-title-1-is-news",
+    "instagramLink":"https://www.instagram.com/p/Cs-h2XNLpE6/?igshid=MmJiY2I4NDBkZg==",
+
     "heading": "இந்த வருடம் ஓய்வு இல்லை.. ஆனால்.. கேப்டன் மாற்றம்? இதுதான் சிஎஸ்கே தோனியின் பிளான்? கேப்டன் அவரா?",
     "createdBy": "Raja",
     "createdAt": "2023-05-26T20:21:39.348Z",
@@ -91,6 +96,8 @@
   },
   {
     "id": "i3r709r323uqewbfi",
+    "title" : "This-is-a-random-title",
+
     "heading": "இந்த வருடம் ஓய்வு இல்லை.. ஆனால்.. கேப்டன் மாற்றம்? இதுதான் சிஎஸ்கே தோனியின் பிளான்? கேப்டன் அவரா?",
     "createdBy": "Raja",
     "createdAt": "2023-05-26T20:21:39.348Z",
@@ -136,6 +143,8 @@
   },
   {
     "id": "i3r709r323ubie132i",
+    "title" : "new-title-for-url",
+    
     "heading": "இந்த வருடம் ஓய்வு இல்லை.. ஆனால்.. கேப்டன் மாற்றம்? இதுதான் சிஎஸ்கே தோனியின் பிளான்? கேப்டன் அவரா?",
     "createdBy": "Raja",
     "createdAt": "2023-05-26T20:21:39.348Z",
@@ -181,6 +190,7 @@
   },
   {
     "id": "i3r709r323ubxxbfi",
+    "title" : "my-title-for-this-news",
     "heading": "இந்த வருடம் ஓய்வு இல்லை.. ஆனால்.. கேப்டன் மாற்றம்? இதுதான் சிஎஸ்கே தோனியின் பிளான்? கேப்டன் அவரா?",
     "createdBy": "Raja",
     "createdAt": "2023-05-26T20:21:39.348Z",

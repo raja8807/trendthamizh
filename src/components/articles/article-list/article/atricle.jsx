@@ -3,6 +3,9 @@ const { Row, Col, Image, Figure, Badge } = require("react-bootstrap");
 import Link from "next/link";
 import styles from "./article.module.scss";
 import ShareButtons from "@/components/ui/share-buttons/shrare_buttons";
+import { InstagramEmbed, YouTubeEmbed } from "react-social-media-embed";
+import { PlaceholderEmbed } from "react-social-media-embed";
+import { useState } from "react";
 
 const Article = (props) => {
   const { articleData } = props;
@@ -56,14 +59,15 @@ const Article = (props) => {
 
   const getDate = () => {
     const date = new Date(articleData?.createdAt);
-
     return date.toDateString();
   };
 
-  console.log(articleData?.bannerImage?.src);
+  const YOUTUBE_DEFAULT_HEIGHT = 300;
+  const [embedHeight, setEmbedHeight] = useState(YOUTUBE_DEFAULT_HEIGHT);
 
   return (
     <article className={styles.article}>
+      
       <div>
         <h1>{articleData?.heading}</h1>
         <div className={styles.details}>
@@ -80,11 +84,10 @@ const Article = (props) => {
         </div>
         <br />
         <Figure>
-            <Figure.Image
-              src={articleData?.bannerImage?.src}
-              alt={articleData?.bannerImage?.name}
-            />
-
+          <Figure.Image
+            src={articleData?.bannerImage?.src}
+            alt={articleData?.bannerImage?.name}
+          />
         </Figure>
       </div>
 
@@ -187,10 +190,30 @@ const Article = (props) => {
               );
             })}
       </main>
+      {articleData?.youtubeLink && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <YouTubeEmbed
+            url={articleData?.youtubeLink}
+            width={400}
+            height={embedHeight}
+            youTubeProps={{
+              onReady: async (r) =>
+                (await r.target.getIframe()).addEventListener("load", () =>
+                  setEmbedHeight((height) => height + 1)
+                ),
+            }}
+          />
+        </div>
+      )}
+      {articleData?.instagramLink && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <InstagramEmbed url={articleData?.instagramLink} width={400} />
+        </div>
+      )}
       <hr />
       <div className={styles.article_footer}>
         <div className={styles.tags}>
-          <p>Tags : </p>
+          <p>Tags &nbsp; : </p>
           {articleData?.tags?.map((tag) => {
             return (
               <Link key={tag} href={`/tag/${tag}`}>
@@ -199,12 +222,16 @@ const Article = (props) => {
             );
           })}
         </div>
-        <ShareButtons
-          data={{
-            heading: articleData?.heading,
-            tags: articleData?.tags,
-          }}
-        />
+        <br />
+        <div className={styles.tags}>
+          <p>Share :</p>
+          <ShareButtons
+            data={{
+              heading: articleData?.heading,
+              tags: articleData?.tags,
+            }}
+          />
+        </div>
       </div>
       <hr />
     </article>

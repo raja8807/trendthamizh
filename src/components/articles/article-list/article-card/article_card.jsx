@@ -32,7 +32,7 @@ const ArticlePreviewCard = (props) => {
   return (
     <div className={styles.article_preview}>
       <Link
-        href={`/article?categeory=${articlePreview.category}&id=${articlePreview.id}`}
+        href={`/article/${articlePreview.title}`}
       >
         <Card className={styles.article_preview_card}>
           <div className={styles.article_preview_image}>
@@ -59,7 +59,7 @@ const ArticlePreviewCard = (props) => {
           </div>
           <Card.Body>
             <Card.Title>
-              <h3>{articlePreview?.heading}</h3>
+              <h2>{articlePreview?.heading}</h2>
             </Card.Title>
             <Card.Text className={styles.description}>
               {articlePreview?.paragraphs[0]}
