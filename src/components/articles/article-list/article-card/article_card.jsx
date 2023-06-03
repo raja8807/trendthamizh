@@ -6,6 +6,8 @@ import ShareButtons from "@/components/ui/share-buttons/shrare_buttons";
 const ArticlePreviewCard = (props) => {
   const { articlePreview } = props;
 
+  const paragraphs = articlePreview?.content?.split('.')
+
  
 
   //   const articlePreview = {
@@ -47,7 +49,7 @@ const ArticlePreviewCard = (props) => {
                 );
               })}
             </div>
-            {/* <div className={styles?.share_btns}>
+            <div className={styles?.share_btns}>
             <ShareButtons data={
                 {
                     heading:articlePreview?.heading,
@@ -55,14 +57,14 @@ const ArticlePreviewCard = (props) => {
                 }
             }
                 />
-          </div> */}
+          </div>
           </div>
           <Card.Body>
             <Card.Title>
               <h2>{articlePreview?.heading}</h2>
             </Card.Title>
             <Card.Text className={styles.description}>
-              {articlePreview?.paragraphs[0]}
+              {paragraphs[0]}
             </Card.Text>
             <small>{getDate()}</small>
           </Card.Body>

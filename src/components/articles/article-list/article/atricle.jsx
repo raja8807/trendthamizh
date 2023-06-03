@@ -10,64 +10,18 @@ import { useState } from "react";
 const Article = (props) => {
   const { articleData } = props;
 
-  // const articleData = {
-  //   id: "i3r709r323ubiebfi",
-  //   heading:
-  //     "இந்த வருடம் ஓய்வு இல்லை.. ஆனால்.. கேப்டன் மாற்றம்? இதுதான் சிஎஸ்கே தோனியின் பிளான்? கேப்டன் அவரா?",
-  //   createdBy: "Raja",
-  //   createdAt: new Date(),
-  //   category: "cricket",
-  //   bannerImage: {
-  //     name: "Creicket Image",
-  //     src: "/images/categories/cricket.jpg",
-  //   },
-  //   images: [
-  //     {
-  //       src: "https://assets.bcci.tv/bcci/photos/1043/842dee7a-f6b7-4e80-83ff-4fbdfe44eb11.jpg",
-  //       source: "iplt20.com",
-  //     },
-  //     {
-  //       src: "https://assets.bcci.tv/bcci/photos/1043/688d01fe-9efb-46ee-b346-41c954812a9a.jpg",
-  //       source: "iplt20.com",
-  //     },
-  //     {
-  //       src: "https://assets.bcci.tv/bcci/photos/1043/5cd49266-d531-411b-999a-0c0d0199d949.jpg",
-  //       source: "iplt20.com",
-  //     },
-  //     {
-  //       src: "https://assets.bcci.tv/bcci/photos/1043/5cd49266-d531-411b-999a-0c0d0199d949.jpg",
-  //       source: "iplt20.com",
-  //     },
-  //     {
-  //       src: "https://assets.bcci.tv/bcci/photos/1043/5cd49266-d531-411b-999a-0c0d0199d949.jpg",
-  //       source: "iplt20.com",
-  //     },
-  //     {
-  //       src: "https://assets.bcci.tv/bcci/photos/1043/5cd49266-d531-411b-999a-0c0d0199d949.jpg",
-  //       source: "iplt20.com",
-  //     },
-  //   ],
-  //   paragraphs: [
-  //     "இந்த நிலையில்தான் *தோனி* ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற *போவதாக* பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன. இந்த நிலையில்தான் தோனி ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற போவதாக பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன.",
-  //     "இந்த நிலையில்தான் *தோனி* ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற *போவதாக* பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன. இந்த நிலையில்தான் தோனி ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற போவதாக பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன.",
-  //     "இந்த நிலையில்தான் *தோனி* ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற *போவதாக* பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன. இந்த நிலையில்தான் தோனி ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற போவதாக பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன.",
-  //     "இந்த நிலையில்தான் *தோனி* ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற *போவதாக* பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன. இந்த நிலையில்தான் தோனி ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற போவதாக பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன.",
-  //     "இந்த நிலையில்தான் தோனி ஐபிஎல் தொடரில் இருந்து *ஓய்வு* பெற போவதாக பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன. இந்த நிலையில்தான் தோனி ஐபிஎல் தொடரில் இருந்து ஓய்வு பெற போவதாக பேச்சுக்கள் சுற்றி வரும் நிலையில்தான் சிஎஸ்கேவின் அடுத்த கேப்டன் யார் என்பது தொடர்பான ஆலோசனைகள், விவாதங்கள் எழுந்துள்ளன.",
-  //   ],
-  //   tags: ["ipl", "cricket", "csk", "dhoni", "2023"],
-  // };
-
   const getDate = () => {
     const date = new Date(articleData?.createdAt);
     return date.toDateString();
   };
+
+  const paragraphs = articleData?.content?.split(".");
 
   const YOUTUBE_DEFAULT_HEIGHT = 300;
   const [embedHeight, setEmbedHeight] = useState(YOUTUBE_DEFAULT_HEIGHT);
 
   return (
     <article className={styles.article}>
-      
       <div>
         <h1>{articleData?.heading}</h1>
         <div className={styles.details}>
@@ -92,8 +46,8 @@ const Article = (props) => {
       </div>
 
       <main>
-        {articleData?.paragraphs?.length > articleData?.images?.length
-          ? articleData?.paragraphs?.map((para, idx) => {
+        {paragraphs?.length > articleData?.images?.length
+          ? paragraphs?.map((para, idx) => {
               const splittedPara = para.split("*");
 
               return (
@@ -109,9 +63,7 @@ const Article = (props) => {
                               <strong>{sentence}</strong>
                             );
                           })}
-
-                      <br />
-                      <br />
+                      {"."}
                     </p>
                     {articleData?.images?.[idx] && (
                       <Row>
@@ -142,7 +94,7 @@ const Article = (props) => {
               );
             })
           : articleData?.images?.map((image, idx) => {
-              const paragraph = articleData?.paragraphs?.[idx];
+              const paragraph = paragraphs?.[idx];
               let splittedPara;
               if (paragraph) {
                 splittedPara = paragraph.split("*");
@@ -163,8 +115,7 @@ const Article = (props) => {
                               );
                             })}
 
-                        <br />
-                        <br />
+                        {"."}
                       </p>
                     )}
                     {

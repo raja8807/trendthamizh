@@ -20,7 +20,7 @@ const ThumbCard = (props) => {
   return (
     <Link 
     // href={`/article?category=${thumbData?.category}&id=${thumbData?.id}`}
-    href={`/article?categeory=${thumbData.category}&id=${thumbData.id}`}
+    href={`/article/${thumbData.title}`}
     
     >
       <Row className={styles.thumb_card}>

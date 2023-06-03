@@ -30,9 +30,9 @@ const headerItems = [
         href: "news",
       },
       {
-        name: "Cricket",
+        name: "Sports",
         type: "link",
-        href: "cricket",
+        href: "sports",
       },
       {
         name: "Cinema",
@@ -61,6 +61,11 @@ const headerItems = [
     type: "link",
     href: "contact",
   },
+  // {
+  //   name: "Admin",
+  //   type: "link",
+  //   href: "admin-panel",
+  // },
 ];
 
 const Header = () => {
@@ -100,7 +105,7 @@ const Header = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               {headerItems.map((item) => {
-                const isHome = item.name === "Home";
+                // const isHome = item.name === "Home";
 
                 return item.type === "link" ? (
                   <Navbar.Text
@@ -149,6 +154,11 @@ const Header = () => {
               />
               <Button variant="outline-success">Search</Button>
             </Form>
+            &nbsp; &nbsp; &nbsp;
+            <br />
+            <Navbar.Text className={styles.inactive}>
+              <Link href={"/admin-panel"}>Admin</Link>
+            </Navbar.Text>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
