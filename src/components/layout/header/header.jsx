@@ -105,8 +105,7 @@ const Header = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               {headerItems.map((item) => {
-                // const isHome = item.name === "Home";
-
+                
                 return item.type === "link" ? (
                   <Navbar.Text
                     key={item.name}

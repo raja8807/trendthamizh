@@ -6,6 +6,8 @@ import styles from "./thumb_card.module.scss";
 const ThumbCard = (props) => {
   const { thumbData } = props;
 
+  // console.log(thumbData);
+
   // const thumbData = {
   //   id: "123456",
   //   category: "cricket",

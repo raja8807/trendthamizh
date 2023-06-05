@@ -18,8 +18,10 @@ const ShareButtons = (props) => {
 
   const { heading, tags } = data;
 
+  
   const router = useRouter();
-  const url = `${process.env.NEXT_PUBLIC_APP_BASE_URL}${router.asPath}`;
+  const url = `${'https://www.trenthamizh.info'}${router.asPath}`;
+  console.log(url);
 
   const size = 30;
   const isRound = false;

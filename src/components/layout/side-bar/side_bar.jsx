@@ -26,7 +26,7 @@ const SideBar = () => {
         </Row>
         <Row>
           {cricketArticleListData?.map((article) => {
-            return <ThumbCard key={article?.id} thumbData={article} />;
+            return <ThumbCard key={article?._id} thumbData={article} />;
           })}
         </Row>
       </Row>

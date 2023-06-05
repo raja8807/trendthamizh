@@ -1,10 +1,11 @@
 import "@/styles/globals.css";
 import Script from "next/script";
+import { SSRProvider } from "react-bootstrap";
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      {process.env.NEXT_PUBLIC_ENVIRONMENT === "PROD" && (
+      {/* {process.env.NEXT_PUBLIC_ENVIRONMENT === "PROD" && (
         <>
           <Script
             src="https://www.googletagmanager.com/gtag/js?id=G-KBP0JT1RB7"
@@ -19,9 +20,11 @@ export default function App({ Component, pageProps }) {
 `}
           </Script>
         </>
-      )}
+      )} */}
 
-      <Component {...pageProps} />
+      <SSRProvider>
+        <Component {...pageProps} />
+      </SSRProvider>
     </>
   );
 }

@@ -6,7 +6,7 @@ const Sports = () => {
   return (
     <Layout>
       <PageHeading heading="Sports" />
-      <ArticleList />
+      <ArticleList query="category=sports" />
     </Layout>
   );
 };

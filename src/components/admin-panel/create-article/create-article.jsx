@@ -3,16 +3,27 @@ import CustomButton from "@/components/ui/custom-button/custom-button";
 import CustomInput from "@/components/ui/form-elements/custom-input/custom-input";
 import CustomSelect from "@/components/ui/form-elements/custom-select/custom_select";
 import CustomTextArea from "@/components/ui/form-elements/custom-text-area/custom-text-area";
+import axios from "axios";
 import { useFormik } from "formik";
+import Link from "next/link";
+import { useState } from "react";
 
 const CreateArticle = () => {
+  const categories = ["news", "sports", "trending"];
+
+  const [message, setMessage] = useState("");
+  const [newArticle, setNewArticle] = useState(null);
+
   const formik = useFormik({
     initialValues: {
       title: "",
       heading: "",
-      category: "",
+      category: categories[0],
       content: "",
-      bannerImage: null,
+      bannerImage: {
+        name: "",
+        src: "",
+      },
       images: [
         {
           id: 0,
@@ -25,7 +36,44 @@ const CreateArticle = () => {
       tags: [],
     },
 
-    onSubmit: (v) => console.log(v),
+    onSubmit: (values) => {
+      // console.log(values);
+      setMessage("");
+      setNewArticle(null);
+
+      const newArticle = {
+        ...values,
+        bannerImage:
+          values?.bannerImage?.src && values?.bannerImage?.name
+            ? values?.bannerImage
+            : null,
+        images: values.images?.filter(
+          (imgObj) => imgObj?.source && imgObj?.src
+        ),
+      };
+
+      const errors =
+        newArticle?.images.length === 0 ||
+        !newArticle?.bannerImage ||
+        !newArticle?.title ||
+        !newArticle?.heading ||
+        !newArticle?.content ||
+        !newArticle?.tags;
+
+      if (errors) {
+        setMessage("Error Please fill all the requied fields");
+      } else {
+        axios
+          .post("/api/articles", values)
+          .then((res) => {
+            setNewArticle(res?.data);
+          })
+          .catch((err) => {
+            console.log("Error------->", err);
+            setMessage("Error Something went wrong");
+          });
+      }
+    },
   });
 
   return (
@@ -33,20 +81,31 @@ const CreateArticle = () => {
       style={{ display: "flex", flexDirection: "column", gap: "20px" }}
       onSubmit={formik?.handleSubmit}
     >
-      <CustomInput placeHolder="Title" id="title" formik={formik} /> 
+      <CustomInput placeHolder="Title" id="title" formik={formik} />
       <CustomInput placeHolder="Heading" id="heading" formik={formik} />
-      <CustomSelect
-        options={["News", "Sports", "Trending"]}
-        id="category"
-        formik={formik}
-      />
+      <CustomSelect options={categories} id="category" formik={formik} />
       <CustomTextArea placeHolder="Content" id="content" formik={formik} />
 
-      <CustomInput
-        placeHolder="Banner Image Link"
-        id="bannerImage"
-        formik={formik}
-      />
+      <div>
+        <CustomInput
+          placeHolder="Banner Image Link"
+          changeHandler={(value) => {
+            const bannerImage = { ...formik?.values?.bannerImage };
+            bannerImage.src = value;
+            formik?.setFieldValue("bannerImage", bannerImage);
+          }}
+          // id="bannerImage"
+          // formik={formik}
+        />
+        <CustomInput
+          placeHolder="Banner Image name"
+          changeHandler={(value) => {
+            const bannerImage = { ...formik?.values?.bannerImage };
+            bannerImage.name = value;
+            formik?.setFieldValue("bannerImage", bannerImage);
+          }}
+        />
+      </div>
 
       <div>
         {formik?.values?.images?.map((image, i) => (
@@ -139,6 +198,10 @@ const CreateArticle = () => {
       >
         Create
       </CustomButton>
+      {message}
+      {newArticle && (
+        <Link href={`/article/${newArticle?.title}`}>{newArticle?.title}</Link>
+      )}
     </form>
   );
 };
