@@ -49,7 +49,7 @@ const Article = (props) => {
     <>
       {isDeleteLoading && <p>Loading.....</p>}
       {isDeleteSuccess && <p>This Article has been deleted</p>}
-      <p>new</p>
+      <p>latest</p>
       {article && (
         <article className={styles.article}>
           <CustomButton clickHandler={deleteArticle}>
