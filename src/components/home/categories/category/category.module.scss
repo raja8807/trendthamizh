@@ -2,9 +2,13 @@
     border: none;
     // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    
   .img_area {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 100px;
+
 
     .img_overlay {
       background-color: $color_primary_dark;

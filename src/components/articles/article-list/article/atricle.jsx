@@ -11,84 +11,75 @@ import CustomButton from "@/components/ui/custom-button/custom-button";
 // import { useRouter } from "next/router";
 
 const Article = (props) => {
-  const { title } = props;
+  const { title, article } = props;
 
-  const [articleData, setArticleData] = useState(null);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setIsError(null);
-    axios
-      .get(`/api/article/${title}`)
-      .then((res) => setArticleData(res?.data))
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsError(JSON.stringify(err));
-        setIsLoading(false);
-      });
-  }, [title]);
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
   const deleteArticle = () => {
-    setIsLoading(true);
+    setIsDeleteLoading(true);
 
     axios.delete(`/api/article/${title}`).then((res) => {
       if (res.status === 200) {
-        setIsSuccess(true);
-        setIsLoading(false);
+        setIsDeleteSuccess(true);
+        setIsDeleteLoading(false);
       }
     });
   };
 
   const getDate = () => {
-    const date = new Date(articleData?.createdAt);
+    const date = new Date(article?.createdAt);
     return date.toDateString();
   };
 
-  const paragraphs = articleData?.content?.split(".");
+  const sentences = article?.content?.split(".");
+  const joiSentencesBy = 4;
+
+  const chunk = (arr, size) =>
+    Array.from({ length: Math.ceil(arr?.length / size) }, (v, i) =>
+      arr?.slice(i * size, i * size + size)
+    );
+
+  const paragraphs = chunk(sentences, joiSentencesBy)?.map((x) => x.join(". "));
 
   const YOUTUBE_DEFAULT_HEIGHT = 300;
   const [embedHeight, setEmbedHeight] = useState(YOUTUBE_DEFAULT_HEIGHT);
 
   return (
     <>
-      {isLoading && <p>Loading.....</p>}
-      {isError && <p>error</p>}
-      {isSuccess && <p>This Article has been deleted</p>}
-      {articleData && (
+      {isDeleteLoading && <p>Loading.....</p>}
+      {isDeleteSuccess && <p>This Article has been deleted</p>}
+      <p>new</p>
+      {article && (
         <article className={styles.article}>
           <CustomButton clickHandler={deleteArticle}>
             Delete Article
           </CustomButton>
           <div>
-            <h1>{articleData?.heading}</h1>
+            <h1>{article?.heading}</h1>
             <div className={styles.details}>
               <p>
                 <small>published: {getDate()}</small>
-                &nbsp; By <b>{articleData?.createdBy}</b>
+                &nbsp; By <b>{article?.createdBy}</b>
               </p>
               <ShareButtons
                 data={{
-                  heading: articleData?.heading,
-                  tags: articleData?.tags,
+                  heading: article?.heading,
+                  tags: article?.tags,
                 }}
               />
             </div>
             <br />
             <Figure>
               <Figure.Image
-                src={articleData?.bannerImage?.src}
-                alt={articleData?.bannerImage?.name}
+                src={article?.bannerImage?.src}
+                alt={article?.bannerImage?.name}
               />
             </Figure>
           </div>
 
           <main>
-            {paragraphs?.length > articleData?.images?.length
+            {paragraphs?.length > article?.images?.length
               ? paragraphs?.map((para, idx) => {
                   const splittedPara = para.split("*");
 
@@ -107,23 +98,22 @@ const Article = (props) => {
                               })}
                           {"."}
                         </p>
-                        {articleData?.images?.[idx] && (
+                        {article?.images?.[idx] && (
                           <Row>
                             <Col sm={1} />
                             <Col sm={10}>
                               <div className={styles.image_container}>
                                 <Figure>
                                   <Figure.Image
-                                    src={articleData?.images?.[idx]?.src}
+                                    src={article?.images?.[idx]?.src}
                                     alt="xx"
                                   />
                                   <Figure.Caption>
                                     <Link
-                                      href={articleData?.images?.[idx]?.src}
+                                      href={article?.images?.[idx]?.src}
                                       target="_blank"
                                     >
-                                      Source :{" "}
-                                      {articleData?.images?.[idx]?.source}
+                                      Source : {article?.images?.[idx]?.source}
                                     </Link>
                                   </Figure.Caption>
                                 </Figure>
@@ -136,7 +126,7 @@ const Article = (props) => {
                     </>
                   );
                 })
-              : articleData?.images?.map((image, idx) => {
+              : article?.images?.map((image, idx) => {
                   const paragraph = paragraphs?.[idx];
                   let splittedPara;
                   if (paragraph) {
@@ -184,11 +174,11 @@ const Article = (props) => {
                   );
                 })}
           </main>
-          {articleData?.youtubeLink && (
+          {article?.youtubeLink && (
             <div style={{ display: "flex", justifyContent: "center" }}>
               {/* <br /> */}
               <YouTubeEmbed
-                url={articleData?.youtubeLink}
+                url={article?.youtubeLink}
                 width={400}
                 height={embedHeight}
                 youTubeProps={{
@@ -202,16 +192,16 @@ const Article = (props) => {
             </div>
           )}
           <br />
-          {articleData?.instagramLink && (
+          {article?.instagramLink && (
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <InstagramEmbed url={articleData?.instagramLink} width={400} />
+              <InstagramEmbed url={article?.instagramLink} width={400} />
             </div>
           )}
           <hr />
           <div className={styles.article_footer}>
             <div className={styles.tags}>
               <p>Tags &nbsp; : </p>
-              {articleData?.tags?.map((tag) => {
+              {article?.tags?.map((tag) => {
                 return (
                   <Link key={tag} href={`/tag/${tag}`}>
                     <Badge className={styles.badge}>{tag}</Badge>
@@ -224,8 +214,8 @@ const Article = (props) => {
               <p>Share :</p>
               <ShareButtons
                 data={{
-                  heading: articleData?.heading,
-                  tags: articleData?.tags,
+                  heading: article?.heading,
+                  tags: article?.tags,
                 }}
               />
             </div>
