@@ -12,7 +12,7 @@ export default function HomePage() {
       <Layout>
         <CustomButton clickHandler={async ()=>{
           axios.post('/api/articles',{task: 'test is sucess'}).then((res)=>{
-            console.log(res);
+            // console.log(res);
           }).catch(err => console.log(err))
         }}>Test </CustomButton>
         <Home />

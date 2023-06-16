@@ -2,7 +2,10 @@ import ArticleList from "@/components/articles/article-list/article-list";
 import Layout from "@/components/layout/layout";
 import PageHeading from "@/components/ui/page-heading/page_heading";
 
-const Sports = () => {
+const Sports = (props) => {
+
+  // console.log(props);
+
   return (
     <Layout>
       <PageHeading heading="Sports" />
@@ -12,3 +15,5 @@ const Sports = () => {
 };
 
 export default Sports;
+
+

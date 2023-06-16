@@ -10,7 +10,7 @@ const ArticlePreviewCard = (props) => {
 
   const paragraphs = articlePreview?.content?.split(".");
 
-  console.log(articlePreview);
+  // console.log(articlePreview);
 
   const getDate = () => {
     const date = new Date(articlePreview?.createdAt);

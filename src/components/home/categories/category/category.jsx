@@ -8,7 +8,7 @@ const CategoryCard = (props) => {
 
   return (
     <Card className={styles.category_card}>
-      <Link href={`/${id}`}>
+      <Link href={`/category/${id}`}>
         <div className={styles.img_area}>
           <Card.Img variant="top" src={`/images/categories/${id}.jpg`} />
           <div className={styles.img_overlay}>

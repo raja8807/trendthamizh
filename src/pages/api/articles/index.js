@@ -4,7 +4,6 @@ import { connectMongoDB } from "@/libs/mongoConnect";
 import Article from "@/models/ArticleModel";
 
 export default async function handler(req, res) {
-  console.warn(req.query);
 
   if (req.method === "GET") {
     try {

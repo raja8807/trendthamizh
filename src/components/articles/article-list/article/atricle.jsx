@@ -25,7 +25,6 @@ const Article = (props) => {
       .get(`/api/article/${title}`)
       .then((res) => setArticleData(res?.data))
       .then(() => {
-        
         setIsLoading(false);
       })
       .catch((err) => {
@@ -51,8 +50,6 @@ const Article = (props) => {
   };
 
   const paragraphs = articleData?.content?.split(".");
-
-  console.log(paragraphs);
 
   const YOUTUBE_DEFAULT_HEIGHT = 300;
   const [embedHeight, setEmbedHeight] = useState(YOUTUBE_DEFAULT_HEIGHT);
