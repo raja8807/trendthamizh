@@ -49,7 +49,6 @@ const Article = (props) => {
     <>
       {isDeleteLoading && <p>Loading.....</p>}
       {isDeleteSuccess && <p>This Article has been deleted</p>}
-      <p>latest</p>
       {article && (
         <article className={styles.article}>
           <CustomButton clickHandler={deleteArticle}>
@@ -69,6 +68,7 @@ const Article = (props) => {
                 }}
               />
             </div>
+            <p>&#128065; <small>{article?.viewsCount}</small></p>
             <br />
             <Figure>
               <Figure.Image
@@ -110,7 +110,7 @@ const Article = (props) => {
                                   />
                                   <Figure.Caption>
                                     <Link
-                                      href={article?.images?.[idx]?.src}
+                                      href={article?.images?.[idx]?.source}
                                       target="_blank"
                                     >
                                       Source : {article?.images?.[idx]?.source}
@@ -159,7 +159,7 @@ const Article = (props) => {
                                 <Figure>
                                   <Figure.Image src={image?.src} alt="xx" />
                                   <Figure.Caption>
-                                    <Link href={image?.src}>
+                                    <Link href={image?.source}>
                                       Source : {image.source}
                                     </Link>
                                   </Figure.Caption>

@@ -5,13 +5,7 @@ import { connectMongoDB } from "@/libs/mongoConnect";
 import Article from "@/models/ArticleModel";
 
 export default async function handler(req, res) {
-  // res.status(200).json({ name: process.env.MONGO_URI })
-  // console.warn('okokokokokokokok---------------------');
-  // console.log('reqqqqqqqqqqqqq--------->',req.query);
-
-  //   console.log('reqqqqqqq--------',req.query.title);
-
-  //   res.status(200).send({ data: "hiii" });
+  
 
   if (req.method === "GET") {
     try {

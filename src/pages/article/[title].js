@@ -24,6 +24,7 @@ export default ArticleByTitle;
 
 export async function getServerSideProps(context) {
   const articleTitle = context.query.title;
+
   const fetchUrl = `http://${context.req.headers.host}/api/article/${articleTitle}`;
 
   const res = await axios.get(fetchUrl);
@@ -31,7 +32,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       articleData: res.data,
-      title:articleTitle
+      title: articleTitle,
     },
   };
 }

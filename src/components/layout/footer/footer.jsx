@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "./footer.module.scss";
 import Link from "next/link";
 import Logo from "../logo/logo";
+import CATEGORIES from "@/helpers/categories/categories";
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
       <Container>
         <Row xs={12}>
           <Col className={styles.centered_row}>
-            <Logo/>
+            <Logo />
           </Col>
         </Row>
         <hr />
@@ -37,31 +38,13 @@ const Footer = () => {
           <Col xs={6} md={4}>
             <h4>Browse By Category</h4>
             <ul>
-              <li>
-                <Row>
-                  <Link href="#">News</Link>
-                </Row>
-              </li>
-              <li>
-                <Row>
-                  <Link href="#">Cinema</Link>
-                </Row>
-              </li>
-              <li>
-                <Row>
-                  <Link href="#">Cricket</Link>
-                </Row>
-              </li>
-              <li>
-                <Row>
-                  <Link href="#">Trending</Link>
-                </Row>
-              </li>
-              <li>
-                <Row>
-                  <Link href="#">Random</Link>
-                </Row>
-              </li>
+              {CATEGORIES.map((cat) => {
+                return <li key={cat.id}>
+                  <Row>
+                    <Link href={`/category/${cat.id}`}>{cat.categoryName}</Link>
+                  </Row>
+                </li>;
+              })}
             </ul>
           </Col>
           <Col md={4}>
@@ -92,7 +75,7 @@ const Footer = () => {
             <span>|</span>
             <Link href="#">Termms and Service</Link>
             <span>|</span>
-            <Link href="#">Privacy Policy</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
           </Col>
         </Row>
       </Container>

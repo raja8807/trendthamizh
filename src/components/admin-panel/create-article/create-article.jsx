@@ -8,8 +8,10 @@ import { useFormik } from "formik";
 import Link from "next/link";
 import { useState } from "react";
 
+import CATEGORIES from "@/helpers/categories/categories";
+
 const CreateArticle = () => {
-  const categories = ["news", "sports", "trending"];
+  const categories = CATEGORIES.map(category => category.id);
 
   const [message, setMessage] = useState("");
   const [newArticle, setNewArticle] = useState(null);
@@ -64,7 +66,7 @@ const CreateArticle = () => {
         setMessage("Error Please fill all the requied fields");
       } else {
         axios
-          .post("/api/articles", values)
+          .post("/api/articles", { ...values, viewsCount: 0 })
           .then((res) => {
             setNewArticle(res?.data);
           })
@@ -92,36 +94,24 @@ const CreateArticle = () => {
           changeHandler={(value) => {
             const bannerImage = { ...formik?.values?.bannerImage };
             bannerImage.src = value;
+            bannerImage.name = value ? value : "Banner";
             formik?.setFieldValue("bannerImage", bannerImage);
           }}
           // id="bannerImage"
           // formik={formik}
         />
-        <CustomInput
+        {/* <CustomInput
           placeHolder="Banner Image name"
           changeHandler={(value) => {
             const bannerImage = { ...formik?.values?.bannerImage };
-            bannerImage.name = value;
             formik?.setFieldValue("bannerImage", bannerImage);
           }}
-        />
+        /> */}
       </div>
 
       <div>
         {formik?.values?.images?.map((image, i) => (
           <div key={image?.id} style={{ display: "flex" }}>
-            <CustomInput
-              placeHolder={`Image Name ${i + 1}`}
-              changeHandler={(value) => {
-                const currentImages = [...formik?.values?.images];
-                const thisImage = formik?.values?.images?.findIndex(
-                  (img) => img?.id === image?.id
-                );
-                currentImages[thisImage].src = value;
-
-                formik?.setFieldValue("images", currentImages);
-              }}
-            />
             {/* &nbsp; &nbsp;  */}
             <CustomInput
               placeHolder={`Image Link ${i + 1}`}
@@ -130,27 +120,18 @@ const CreateArticle = () => {
                 const thisImage = formik?.values?.images?.findIndex(
                   (img) => img?.id === image?.id
                 );
-                currentImages[thisImage].source = value;
+                currentImages[thisImage].src = value
+                  ? value
+                  : `article_img ${i + 1}`;
+                currentImages[thisImage].source = `img_${i + 1}`;
 
-                formik?.setFieldValue("images", currentImages);
+                formik?.setFieldValue(
+                  "images",
+                  currentImages?.filter((i) => !!i.src)
+                );
               }}
             />
-            {/* {i !== 0 && (
-              <CustomButton
-                clickHandler={() => {
-                  let currentImages = [...formik?.values?.images];
-                  const thisImage = formik?.values?.images?.find(
-                    (img) => img?.id === image?.id
-                  );
-                  currentImages = currentImages?.filter(
-                    (img) => img?.id !== thisImage?.id
-                  );
-                  formik?.setFieldValue("images", currentImages);
-                }}
-              >
-                Delete
-              </CustomButton>
-            )} */}
+            <br />
           </div>
         ))}
         <br />

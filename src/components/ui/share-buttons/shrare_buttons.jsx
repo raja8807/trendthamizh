@@ -21,7 +21,7 @@ const ShareButtons = (props) => {
   
   const router = useRouter();
   const url = `${'https://www.trenthamizh.info'}${router.asPath}`;
-  console.log(url);
+ 
 
   const size = 30;
   const isRound = false;

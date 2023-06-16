@@ -65,6 +65,10 @@ const articleSchema = new Schema(
       type: [String],
       required: false,
     },
+    viewsCount: {
+      type: Number,
+      required: false,
+    },
   },
   {
     timestamps: true,

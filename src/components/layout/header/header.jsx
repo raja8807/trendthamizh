@@ -13,6 +13,7 @@ import styles from "./header.module.scss";
 import Logo from "../logo/logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import CATEGORIES from "@/helpers/categories/categories";
 
 const headerItems = [
   {
@@ -23,33 +24,11 @@ const headerItems = [
   {
     name: "Categories",
     type: "dropdown",
-    items: [
-      {
-        name: "News",
-        type: "link",
-        href: "news",
-      },
-      {
-        name: "Sports",
-        type: "link",
-        href: "sports",
-      },
-      {
-        name: "Cinema",
-        type: "link",
-        href: "cinema",
-      },
-      {
-        name: "Trending",
-        type: "link",
-        href: "trending",
-      },
-      {
-        name: "Random",
-        type: "link",
-        href: "random",
-      },
-    ],
+    items: CATEGORIES.map((cat) => ({
+      name: cat.categoryName,
+      type: "link",
+      href: cat.id,
+    })),
   },
   {
     name: "About",
@@ -61,11 +40,6 @@ const headerItems = [
     type: "link",
     href: "contact",
   },
-  // {
-  //   name: "Admin",
-  //   type: "link",
-  //   href: "admin-panel",
-  // },
 ];
 
 const Header = () => {
@@ -105,7 +79,6 @@ const Header = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               {headerItems.map((item) => {
-                
                 return item.type === "link" ? (
                   <Navbar.Text
                     key={item.name}
@@ -134,7 +107,9 @@ const Header = () => {
                                 : styles?.inactive
                             }
                           >
-                            <Link href={"/" + item?.href}>{item.name}</Link>
+                            <Link href={"/category/" + item?.href}>
+                              {item.name}
+                            </Link>
                           </Navbar.Text>
                         );
                       })}
