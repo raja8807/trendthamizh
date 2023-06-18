@@ -14,12 +14,12 @@ import Logo from "../logo/logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CATEGORIES from "@/helpers/categories/categories";
+import PAGES from "@/helpers/pages/pages";
 
 const headerItems = [
   {
-    name: "Home",
+    ...PAGES[0],
     type: "link",
-    href: "",
   },
   {
     name: "Categories",
@@ -30,16 +30,7 @@ const headerItems = [
       href: cat.id,
     })),
   },
-  {
-    name: "About",
-    type: "link",
-    href: "about",
-  },
-  {
-    name: "Contact us",
-    type: "link",
-    href: "contact",
-  },
+  ...PAGES.slice(1).map((page) => ({ ...page, type: "link" })),
 ];
 
 const Header = () => {
@@ -88,7 +79,7 @@ const Header = () => {
                         : styles?.inactive
                     }
                   >
-                    <Link href={"/" + item?.href}>{item.name}</Link>
+                    <Link href={item?.href}>{item.name}</Link>
                     &nbsp; &nbsp; &nbsp;
                   </Navbar.Text>
                 ) : (

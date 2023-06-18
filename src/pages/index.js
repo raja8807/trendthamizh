@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function HomePage() {
   return (
     <>
-      <Layout>
+      <Layout categoryName={'home'}>
         <Home />
       </Layout>
     </>

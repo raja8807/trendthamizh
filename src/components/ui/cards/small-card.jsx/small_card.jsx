@@ -2,13 +2,13 @@ const { Card } = require("react-bootstrap");
 
 import styles from "./small_card.module.scss";
 
-const SmallCard = () => {
+const SmallCard = (props) => {
+  const { data } = props;
   return (
     <Card className={styles.small_card}>
-      <Card.Img src="/images/categories/cricket.jpg" height={50} width={50} />
+      <Card.Img src={data?.bannerImage?.src} height={50} width={50} />
       <Card.Title className={styles.small_card_title}>
-        hello tgsiii aisihaio da caifhosahfo aoihaofos hdovsodbvodvo hello
-        tgsiii aisihaio da caifhosahfo aoihaofos hdovsodbvodvo
+        {data?.heading}
       </Card.Title>
     </Card>
   );

@@ -3,6 +3,7 @@ import styles from "./footer.module.scss";
 import Link from "next/link";
 import Logo from "../logo/logo";
 import CATEGORIES from "@/helpers/categories/categories";
+import PAGES from "@/helpers/pages/pages";
 
 const Footer = () => {
   return (
@@ -18,32 +19,28 @@ const Footer = () => {
           <Col xs={6} md={4}>
             <h4>Links</h4>
             <ul>
-              <li>
-                <Row>
-                  <Link href="#">Home</Link>
-                </Row>
-              </li>
-              <li>
-                <Row>
-                  <Link href="#">About</Link>
-                </Row>
-              </li>
-              <li>
-                <Row>
-                  <Link href="#">Contact Us</Link>
-                </Row>
-              </li>
+              {PAGES.map((page) => (
+                <li key={page.id}>
+                  <Row>
+                    <Link href={`${page?.href}`}>{page.name}</Link>
+                  </Row>
+                </li>
+              ))}
             </ul>
           </Col>
           <Col xs={6} md={4}>
             <h4>Browse By Category</h4>
             <ul>
               {CATEGORIES.map((cat) => {
-                return <li key={cat.id}>
-                  <Row>
-                    <Link href={`/category/${cat.id}`}>{cat.categoryName}</Link>
-                  </Row>
-                </li>;
+                return (
+                  <li key={cat.id}>
+                    <Row>
+                      <Link href={`/category/${cat.id}`}>
+                        {cat.categoryName}
+                      </Link>
+                    </Row>
+                  </li>
+                );
               })}
             </ul>
           </Col>

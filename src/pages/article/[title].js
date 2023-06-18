@@ -5,16 +5,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const ArticleByTitle = (props) => {
-  const { title, articleData } = props;
+  const { title, articleData,categoryName } = props;
 
   const [article, setArticle] = useState([]);
+
+  // console.log(category);
 
   useEffect(() => {
     setArticle(articleData);
   }, [articleData]);
 
   return (
-    <Layout>
+    <Layout tags={article?.tags} categoryName={categoryName}>
       <Article title={title} article={article} />
     </Layout>
   );
@@ -33,6 +35,7 @@ export async function getServerSideProps(context) {
     props: {
       articleData: res.data,
       title: articleTitle,
+      categoryName:res?.data?.category
     },
   };
 }

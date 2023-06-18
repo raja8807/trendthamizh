@@ -8,7 +8,6 @@ const Sports = (props) => {
   const { articlesData, categoryName } = props;
 
   const [articles, setArticles] = useState([]);
-
   const heading = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}`;
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const Sports = (props) => {
   }, [articlesData]);
 
   return (
-    <Layout>
+    <Layout categoryName={categoryName} >
       <PageHeading heading={heading} />
       <ArticleList query="category=sports" articles={articles} />
     </Layout>
