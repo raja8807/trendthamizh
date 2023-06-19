@@ -72,7 +72,7 @@ const Header = () => {
               {headerItems.map((item) => {
                 return item.type === "link" ? (
                   <Navbar.Text
-                    key={item.name}
+                    key={Math.random()}
                     className={
                       paths?.includes(item?.href)
                         ? styles?.active
@@ -91,7 +91,7 @@ const Header = () => {
                       {item.items.map((item) => {
                         return (
                           <Navbar.Text
-                            key={item.name}
+                            key={Math.random()}
                             className={
                               paths?.includes(item?.href)
                                 ? styles?.active
