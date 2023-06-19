@@ -1,8 +1,4 @@
 import ArticlePreviewCard from "./article-card/article_card";
-
-// import cricketArticlesList from "../../../temp_data/cricket.json";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { Col, Row } from "react-bootstrap";
 
 const ArticleList = (props) => {

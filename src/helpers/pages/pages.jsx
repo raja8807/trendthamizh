@@ -4,11 +4,11 @@ const PAGES = [
     href: "/",
     name: "Home",
   },
-  {
-    id: "about",
-    href: "/about",
-    name: "About",
-  },
+  // {
+  //   id: "about",
+  //   href: "/about",
+  //   name: "About",
+  // },
   {
     id: "contact",
     href: "/contact",
