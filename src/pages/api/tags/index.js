@@ -5,15 +5,14 @@ import { connectMongoDB } from "@/libs/mongoConnect";
 import Article from "@/models/ArticleModel";
 
 export default async function handler(req, res) {
-  const tags = req.query.tags;
-
-  const x = tags.split(",");
+  const tagsString = req.query.tags || '';
+  const tagsArray = tagsString.split(",");
 
   if (req.method === "GET") {
     try {
       let articles = [];
       await connectMongoDB();
-      articles = await Article.find({ tags: x[0] }).sort({
+      articles = await Article.find({ tags: { "$in": tagsArray } }).sort({
         viewsCount: "desc",
       });
 
