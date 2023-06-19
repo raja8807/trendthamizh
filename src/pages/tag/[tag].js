@@ -5,10 +5,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const CategoryScreen = (props) => {
-  const { articlesData, categoryName } = props;
+  const { articlesData, tag } = props;
 
   const [articles, setArticles] = useState([]);
-  const heading = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}`;
+  const heading = `${tag[0].toUpperCase()}${tag.slice(1)}`;
 
   const tags = articles
     ?.slice(0, 10)
@@ -22,7 +22,7 @@ const CategoryScreen = (props) => {
 
   return (
     articles[0] && (
-      <Layout categoryName={categoryName} tags={tags}>
+      <Layout categoryName="tags" tags={tags}>
         <PageHeading heading={heading} />
         <ArticleList articles={articles} />
       </Layout>
@@ -33,15 +33,14 @@ const CategoryScreen = (props) => {
 export default CategoryScreen;
 
 export async function getServerSideProps(context) {
-  const categoryName = context.query.category;
-  const fetchUrl = `http://${context.req.headers.host}/api/articles?category=${categoryName}`;
-
+  const tag = context.query.tag;
+  const fetchUrl = `http://${context.req.headers.host}/api/tags/tag?tag=${tag}`;
   const res = await axios.get(fetchUrl);
 
   return {
     props: {
       articlesData: res.data,
-      categoryName,
+      tag,
     },
   };
 }

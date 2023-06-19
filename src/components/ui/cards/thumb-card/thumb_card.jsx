@@ -4,12 +4,26 @@ import Link from "next/link";
 import styles from "./thumb_card.module.scss";
 
 import { Card } from "react-bootstrap";
+import TrenSkeleton from "../../skeleton/skeleton";
 
 const ThumbCard = (props) => {
-  const { thumbData } = props;
+  const { thumbData, isLoading } = props;
 
-  return (
-    <Link href={`/article/${thumbData.title}`}>
+  return isLoading ? (
+      <Row className={styles.thumb_card}>
+        <Col xs={4}>
+          <TrenSkeleton height={100}/>
+        </Col>
+        
+        <Col xs={8}>
+          <TrenSkeleton height={40} customStyle={{marginBottom:'10px'}}/>
+          <TrenSkeleton height={20}/>
+          <TrenSkeleton height={20}/>
+         
+        </Col>
+      </Row>
+  ) : (
+    <Link href={`/article/${thumbData?.title}`}>
       <Row className={styles.thumb_card}>
         <Col xs={4}>
           {/* <img src={thumbData?.bannerImage?.src} alt="xx"/> */}

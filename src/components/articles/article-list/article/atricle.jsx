@@ -4,11 +4,10 @@ import Link from "next/link";
 import styles from "./article.module.scss";
 import ShareButtons from "@/components/ui/share-buttons/shrare_buttons";
 import { InstagramEmbed, YouTubeEmbed } from "react-social-media-embed";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 import axios from "axios";
 import CustomButton from "@/components/ui/custom-button/custom-button";
-// import { useRouter } from "next/router";
 
 const Article = (props) => {
   const { title, article } = props;
@@ -32,7 +31,7 @@ const Article = (props) => {
     return date.toDateString();
   };
 
-  const sentences = article?.content?.split(".");
+  const sentences = article?.content?.split(". ");
   const joiSentencesBy = 4;
 
   const chunk = (arr, size) =>

@@ -5,18 +5,20 @@ import { connectMongoDB } from "@/libs/mongoConnect";
 import Article from "@/models/ArticleModel";
 
 export default async function handler(req, res) {
-  const tags = req.query.tags;
-
-  const x = tags.split(",");
+  const categoryName = req.query.category;
 
   if (req.method === "GET") {
     try {
       let articles = [];
       await connectMongoDB();
-      articles = await Article.find({ tags: x[0] }).sort({
-        viewsCount: "desc",
-      });
-
+      if (categoryName === "home") {
+        articles = await Article.find().sort({ createdAt: "desc" }).limit(10);
+      } else {
+        articles = await Article.find({ category: categoryName })
+          .sort({ createdAt: "desc" })
+          .limit(10)
+          
+      }
       res.status(200).send(articles);
     } catch (err) {
       res.status(500).send({ err: err });

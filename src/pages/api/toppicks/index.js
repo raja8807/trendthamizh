@@ -11,11 +11,8 @@ export default async function handler(req, res) {
     try {
       let articles = [];
       await connectMongoDB();
-      if (categoryName === "home") {
-        articles = await Article.find();
-      } else {
-        articles = await Article.find({ category: categoryName });
-      }
+        articles = await Article.find().sort({viewsCount:'desc'}).limit(10);
+     
       res.status(200).send(articles);
     } catch (err) {
       res.status(500).send({ err: err });

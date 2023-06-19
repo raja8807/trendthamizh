@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       await connectMongoDB();
-      const articles = await Article.find(req.query);
+      const articles = await Article.find(req.query).sort({createdAt:-1});
 
       res.status(200).send(articles);
     } catch (err) {
