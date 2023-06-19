@@ -10,6 +10,10 @@ import AdBanner from "@/components/ad-banner/ad_banner";
 const CategoryScreen = (props) => {
   const { articlesData, categoryName, isValidCategoryName } = props;
 
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    setArticles(articlesData);
+  }, [articlesData]);
   const heading = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}`;
   
   const tags = articles
@@ -18,10 +22,6 @@ const CategoryScreen = (props) => {
   ?.flat(1)
   .slice(0, 10);
   
-  const [articles, setArticles] = useState([]);
-  useEffect(() => {
-    setArticles(articlesData);
-  }, [articlesData]);
 
   return (
     <>
