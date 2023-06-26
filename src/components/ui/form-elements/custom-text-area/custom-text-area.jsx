@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const CustomTextArea = (props) => {
-  const { placeHolder, id, formik, changeHandler } = props;
+  const { placeHolder, id, formik, changeHandler,value } = props;
 
   const handleChange = (e) => {
     if (formik && id) {
@@ -18,6 +18,8 @@ const CustomTextArea = (props) => {
       name={id}
       rows="4"
       cols="50"
+      value={formik?.values[id] ? formik?.values[id] : value}
+
       placeholder={placeHolder}
       onChange={handleChange}
     ></textarea>

@@ -2,6 +2,9 @@ import { Badge, Button, Card, Row } from "react-bootstrap";
 import styles from "./article_card.module.scss";
 import Link from "next/link";
 import ShareButtons from "@/components/ui/share-buttons/shrare_buttons";
+import CustomButton from "@/components/ui/custom-button/custom-button";
+import axios from "axios";
+import { useState } from "react";
 
 const ArticlePreviewCard = (props) => {
   const { articlePreview } = props;
@@ -10,7 +13,22 @@ const ArticlePreviewCard = (props) => {
 
   const paragraphs = articlePreview?.content?.split(".");
 
-  // console.log(articlePreview);
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+
+
+  const deleteArticle = () => {
+    if (confirm("Sure to delete " + articlePreview?.title + "?")) {
+      setIsDeleteLoading(true);
+
+      axios.delete(`/api/article/${articlePreview?.title}`).then((res) => {
+        if (res.status === 200) {
+          setIsDeleteSuccess(true);
+          setIsDeleteLoading(false);
+        }
+      });
+    }
+  };
 
   const getDate = () => {
     const date = new Date(articlePreview?.createdAt);
@@ -19,8 +37,15 @@ const ArticlePreviewCard = (props) => {
 
   return (
     <div className={styles.article_preview}>
+      <CustomButton clickHandler={deleteArticle}>Delete</CustomButton>
+      {isDeleteLoading && "Deleting..."}
+      {isDeleteSuccess && "Deleted."}
       <Link href={`/article/${articlePreview.title}`}>
-        <Card className={styles.article_preview_card}>
+        <Card
+          className={`${styles.article_preview_card} ${
+            isDeleteSuccess && styles.deleted
+          }`}
+        >
           <div className={styles.article_preview_image}>
             <Card.Img variant="top" src={articlePreview?.bannerImage?.src} />
 
@@ -33,14 +58,6 @@ const ArticlePreviewCard = (props) => {
                 );
               })}
             </div>
-            {/* <div className={styles?.share_btns}>
-              <ShareButtons
-                data={{
-                  heading: articlePreview?.heading,
-                  tags: articlePreview?.tags,
-                }}
-              />
-            </div> */}
           </div>
           <Card.Body>
             <Card.Title>

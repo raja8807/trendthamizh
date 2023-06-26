@@ -4,9 +4,10 @@ import Link from "next/link";
 import styles from "./article.module.scss";
 import ShareButtons from "@/components/ui/share-buttons/shrare_buttons";
 import { InstagramEmbed, YouTubeEmbed } from "react-social-media-embed";
-import {  useState } from "react";
+import { useState } from "react";
 
 import axios from "axios";
+import CreateArticle from "@/components/admin-panel/create-article/create-article";
 import CustomButton from "@/components/ui/custom-button/custom-button";
 
 const Article = (props) => {
@@ -16,14 +17,16 @@ const Article = (props) => {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
   const deleteArticle = () => {
-    setIsDeleteLoading(true);
+    if (confirm("Sure To Delete " + title + "?")) {
+      setIsDeleteLoading(true);
 
-    axios.delete(`/api/article/${title}`).then((res) => {
-      if (res.status === 200) {
-        setIsDeleteSuccess(true);
-        setIsDeleteLoading(false);
-      }
-    });
+      axios.delete(`/api/article/${title}`).then((res) => {
+        if (res.status === 200) {
+          setIsDeleteSuccess(true);
+          setIsDeleteLoading(false);
+        }
+      });
+    }
   };
 
   const getDate = () => {
@@ -43,16 +46,35 @@ const Article = (props) => {
 
   const YOUTUBE_DEFAULT_HEIGHT = 300;
   const [embedHeight, setEmbedHeight] = useState(YOUTUBE_DEFAULT_HEIGHT);
-
+  const [ShowEditPage, setShowEditPage] = useState(false);
   return (
     <>
       {isDeleteLoading && <p>Loading.....</p>}
       {isDeleteSuccess && <p>This Article has been deleted</p>}
       {article && (
         <article className={styles.article}>
+          <p>
+            <Link href="/">Home</Link> /{" "}
+            <Link href={`/category/${article?.category}`}>
+              {article?.category}
+            </Link>{" "}
+            / <Link href="#">{article?.title}</Link>
+          </p>
+          <br />
+
           <CustomButton clickHandler={deleteArticle}>
             Delete Article
           </CustomButton>
+          <CustomButton
+            clickHandler={() => {
+              setShowEditPage(!ShowEditPage);
+            }}
+          >
+            Edit Article
+          </CustomButton>
+          {ShowEditPage && (
+            <CreateArticle type="update" articleData={article} />
+          )}
           <div>
             <h1>{article?.heading}</h1>
             <div className={styles.details}>
@@ -67,7 +89,9 @@ const Article = (props) => {
                 }}
               />
             </div>
-            <p>&#128065; <small>{article?.viewsCount}</small></p>
+            <p>
+              &#128065; <small>{article?.viewsCount}</small>
+            </p>
             <br />
             <Figure>
               <Figure.Image

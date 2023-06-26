@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const CustomInput = (props) => {
-  const { placeHolder, id, formik, changeHandler } = props;
+  const { placeHolder, id, formik, changeHandler,value } = props;
 
   const handleChange = (e) => {
     if (formik && id) {
@@ -17,6 +17,7 @@ const CustomInput = (props) => {
       placeholder={placeHolder}
       id={id}
       name={id}
+      value={formik?.values[id] ? formik?.values[id] : value}
       onChange={handleChange}
     />
   );

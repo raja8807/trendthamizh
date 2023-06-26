@@ -15,30 +15,27 @@ const CategoryScreen = (props) => {
     setArticles(articlesData);
   }, [articlesData]);
   const heading = `${categoryName[0].toUpperCase()}${categoryName.slice(1)}`;
-  
+
   const tags = articles
-  ?.slice(0, 10)
-  .map((article) => article.tags)
-  ?.flat(1)
-  .slice(0, 10);
-  
+    ?.slice(0, 10)
+    .map((article) => article.tags)
+    ?.flat(1)
+    .slice(0, 10);
 
   return (
     <>
       {isValidCategoryName ? (
-        articles[0] && (
-          <Layout categoryName={categoryName} tags={tags}>
-            <AdBanner/>
-            <br/>
-            <PageHeading heading={heading} />
-            <ArticleList articles={articles} />
-          </Layout>
-        )
+        <Layout categoryName={categoryName} tags={tags}>
+          <AdBanner />
+          <br />
+          <PageHeading heading={heading} />
+          <ArticleList articles={articles} />
+        </Layout>
       ) : (
         <Layout categoryName="home">
-          <p style={{textAlign:'center'}}>Category Not Found</p>
-          <br/>
-          <CategoriesList/>
+          <p style={{ textAlign: "center" }}>Category Not Found</p>
+          <br />
+          <CategoriesList />
         </Layout>
       )}
     </>
@@ -55,7 +52,7 @@ export async function getServerSideProps(context) {
     categoryName
   );
 
-  console.log("calid--------", isValidCategoryName);
+ 
 
   let res = { data: [] };
 

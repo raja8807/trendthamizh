@@ -6,6 +6,9 @@ const ArticleList = (props) => {
 
   return (
     <div>
+      {
+        articles?.length === 0 && <p>No Articles found</p>
+      }
       <Row>
         {articles?.length > 0 &&
           articles.map((article) => {

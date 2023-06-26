@@ -9,6 +9,10 @@
       font-weight: 600;
       line-height: 25px;
     }
+
+    &.deleted {
+      opacity: 0.5;
+    }
   }
 
   .article_preview_image {
