@@ -14,6 +14,11 @@ const PAGES = [
     href: "/contact",
     name: "Contact Us",
   },
+  // {
+  //   id: "login",
+  //   href: "/contact",
+  //   name: "Login",
+  // },
 ];
 
 export default PAGES;

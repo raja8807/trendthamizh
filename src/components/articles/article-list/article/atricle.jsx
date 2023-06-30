@@ -9,9 +9,11 @@ import { useState } from "react";
 import axios from "axios";
 import CreateArticle from "@/components/admin-panel/create-article/create-article";
 import CustomButton from "@/components/ui/custom-button/custom-button";
+import { useSession } from "next-auth/react";
 
 const Article = (props) => {
   const { title, article } = props;
+  const session = useSession();
 
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
@@ -62,18 +64,22 @@ const Article = (props) => {
           </p>
           <br />
 
-          <CustomButton clickHandler={deleteArticle}>
-            Delete Article
-          </CustomButton>
-          <CustomButton
-            clickHandler={() => {
-              setShowEditPage(!ShowEditPage);
-            }}
-          >
-            Edit Article
-          </CustomButton>
-          {ShowEditPage && (
-            <CreateArticle type="update" articleData={article} />
+          {session.data && (
+            <>
+              <CustomButton clickHandler={deleteArticle}>
+                Delete Article
+              </CustomButton>
+              <CustomButton
+                clickHandler={() => {
+                  setShowEditPage(!ShowEditPage);
+                }}
+              >
+                Edit Article
+              </CustomButton>
+              {ShowEditPage && (
+                <CreateArticle type="update" articleData={article} />
+              )}
+            </>
           )}
           <div>
             <h1>{article?.heading}</h1>

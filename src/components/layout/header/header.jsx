@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import CATEGORIES from "@/helpers/categories/categories";
 import PAGES from "@/helpers/pages/pages";
+import { signOut, useSession } from "next-auth/react";
 
 const headerItems = [
   {
@@ -36,6 +37,7 @@ const headerItems = [
 const Header = () => {
   const router = useRouter();
   const paths = router.pathname?.split("/");
+  const session = useSession();
 
   return (
     <Navbar
@@ -121,9 +123,30 @@ const Header = () => {
             </Form>
             &nbsp; &nbsp; &nbsp;
             <br />
-            <Navbar.Text className={styles.inactive}>
-              <Link href={"/admin-panel"}>Admin</Link>
-            </Navbar.Text>
+            {session.data ? (
+              <>
+                <Navbar.Text className={styles.inactive}>
+                  <Link href={"/admin-panel"}>Admin Panel</Link>
+                </Navbar.Text>
+                &nbsp; &nbsp; &nbsp;
+                <br />
+                <Navbar.Text
+                  className={styles.inactive}
+                  onClick={() => {
+                    signOut({
+                      callbackUrl: "/",
+                    });
+                  }}
+                >
+                  Logout
+                  {/* <Link href={"/admin-panel"}></Link> */}
+                </Navbar.Text>
+              </>
+            ) : (
+              <Navbar.Text className={styles.inactive}>
+                <Link href={"/admin-panel"}>Login</Link>
+              </Navbar.Text>
+            )}
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>

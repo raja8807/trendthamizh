@@ -1,13 +1,17 @@
 import { Badge, Button, Card, Row } from "react-bootstrap";
 import styles from "./article_card.module.scss";
 import Link from "next/link";
-import ShareButtons from "@/components/ui/share-buttons/shrare_buttons";
 import CustomButton from "@/components/ui/custom-button/custom-button";
 import axios from "axios";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const ArticlePreviewCard = (props) => {
   const { articlePreview } = props;
+
+  const session = useSession();
+
+  console.log(session);
 
   // console.log(articlePreview);
 
@@ -15,7 +19,6 @@ const ArticlePreviewCard = (props) => {
 
   const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-
 
   const deleteArticle = () => {
     if (confirm("Sure to delete " + articlePreview?.title + "?")) {
@@ -37,7 +40,9 @@ const ArticlePreviewCard = (props) => {
 
   return (
     <div className={styles.article_preview}>
-      <CustomButton clickHandler={deleteArticle}>Delete</CustomButton>
+      {session.data && (
+        <CustomButton clickHandler={deleteArticle}>Delete</CustomButton>
+      )}
       {isDeleteLoading && "Deleting..."}
       {isDeleteSuccess && "Deleted."}
       <Link href={`/article/${articlePreview.title}`}>

@@ -1,0 +1,86 @@
+.signin {
+  background-color: $color_primary_light;
+  height: calc(100vh - 60px);
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    color: $color_primary_dark;
+    padding: 40px 50px;
+    border-radius: 20px;
+    background-color: $color_primary;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    input {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      outline: none;
+      //   color:  $color_secondary;
+
+      &:active,
+      &:focus {
+        background-color: $color_primary_light;
+        border: 2px solid $color_secondary;
+      }
+      &:hover {
+        background-color: $color_primary_light;
+      }
+
+      &[type="submit"] {
+        margin-top: 10px;
+        &:hover {
+          background-color: $color_secondary;
+          color: white;
+        }
+      }
+
+      &.error {
+        border: 2px solid red;
+      }
+    }
+
+    > div {
+      position: relative;
+      small {
+        position: absolute;
+        right: 0;
+        bottom: -20px;
+        color: red;
+        font-size: 11px;
+        margin: 0;
+      }
+
+      span {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+
+        color: grey;
+        &:hover,
+        &.active {
+          color: $color_secondary;
+          transform: scale(1.3);
+        }
+      }
+    }
+    a {
+      font-size: 13px;
+
+      color: $color_primary_light !important;
+
+      &:hover {
+        font-weight: 600;
+        color: $color_secondary !important;
+      }
+    }
+  }
+}
