@@ -6,5 +6,5 @@ export const connectMongoDB = async () => {
   }
 
   // return await mongoose.connect(process.env.MONGO_URI);
-  return await mongoose.connect('mongodb+srv://trenthamizh:tren8807@trenthamizh.qkkrihr.mongodb.net/trenDB?retryWrites=true&w=majority');
+  return await mongoose.connect(process.env.NEXT_PUBLIC_MONGO_URI);
 };

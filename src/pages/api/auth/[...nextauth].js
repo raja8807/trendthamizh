@@ -2,7 +2,6 @@ import { connectMongoDB } from "@/libs/mongoConnect";
 import User from "@/models/UserModel";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { use } from "react";
 
 export default NextAuth({
   session: {
@@ -43,7 +42,7 @@ export default NextAuth({
       },
     }),
   ],
-  secret:'o4XoNNzVnk',
+  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
   pages: {
     signIn: "/auth/signin/",
     signOut: "/",
