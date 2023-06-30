@@ -43,6 +43,7 @@ export default NextAuth({
       },
     }),
   ],
+  secret:'o4XoNNzVnk',
   pages: {
     signIn: "/auth/signin/",
     signOut: "/",
