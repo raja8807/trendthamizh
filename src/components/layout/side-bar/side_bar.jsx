@@ -6,7 +6,7 @@ import Latest from "./latest/latest";
 const SideBar = (props) => {
   const { categoryName, tags = [] } = props;
   return (
-    <>
+    
       <Row className={styles.side_bar}>
         <Row>
           <TopPicks categoryName={categoryName} />
@@ -23,7 +23,7 @@ const SideBar = (props) => {
           />
         </Row>
       </Row>
-    </>
+    
   );
 };
 

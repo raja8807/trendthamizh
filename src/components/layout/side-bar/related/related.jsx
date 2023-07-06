@@ -33,9 +33,9 @@ const Related = (props) => {
       {isLodaing && <RelatedSkeleton count={3} />}
       {tagArticles.map((article) => {
         return (
-          <>
+          
             <ThumbCard key={article.id} thumbData={article} />
-          </>
+          
         );
       })}
     </>

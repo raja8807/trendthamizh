@@ -15,16 +15,14 @@ export default function HomePage(props) {
   }, [articlesData]);
 
   return (
-    <>
-      <Layout categoryName={"home"}>
-        <AdBanner />
-        <br />
-        <Home />
-        <br />
-        <PageHeading heading="Browse" />
-        <ArticleList articles={articles} />
-      </Layout>
-    </>
+    <Layout categoryName={"home"}>
+      <AdBanner />
+      <br />
+      <Home />
+      <br />
+      <PageHeading heading="Browse" />
+      <ArticleList articles={articles} />
+    </Layout>
   );
 }
 

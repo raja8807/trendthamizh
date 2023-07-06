@@ -26,10 +26,12 @@ const CategoryScreen = (props) => {
     <>
       {isValidCategoryName ? (
         <Layout categoryName={categoryName} tags={tags}>
-          <AdBanner />
-          <br />
-          <PageHeading heading={heading} />
-          <ArticleList articles={articles} />
+          <>
+            <AdBanner />
+            <br />
+            <PageHeading heading={heading} />
+            <ArticleList articles={articles} />
+          </>
         </Layout>
       ) : (
         <Layout categoryName="home">
@@ -51,8 +53,6 @@ export async function getServerSideProps(context) {
   const isValidCategoryName = CATEGORIES.map((cat) => cat.id).includes(
     categoryName
   );
-
- 
 
   let res = { data: [] };
 

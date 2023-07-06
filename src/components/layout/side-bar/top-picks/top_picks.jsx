@@ -28,7 +28,7 @@ const TopPicks = (props) => {
         {isLodaing && <TopPicksSkeleton count={3} />}
         {topPicks[0] &&
           topPicks.map((topPick) => {
-            return <SmallCard key={topPick.id} data={topPick} />;
+            return <SmallCard key={topPick._id} data={topPick} />;
           })}
       </div>
     </>

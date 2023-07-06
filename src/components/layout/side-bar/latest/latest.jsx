@@ -28,12 +28,8 @@ const Latest = (props) => {
       <h3>Latest</h3>
       {isLodaing && <LatestSkeleton count={3} />}
 
-      {tagArticles.map((article) => {
-        return (
-          <>
-            <ThumbCard key={article.id} thumbData={article} />
-          </>
-        );
+      {tagArticles.map((article, idx) => {
+        return <ThumbCard key={Math.random()} thumbData={article} />;
       })}
     </>
   );

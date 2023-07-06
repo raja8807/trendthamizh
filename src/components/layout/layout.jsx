@@ -1,6 +1,4 @@
 import { Col, Container, Row } from "react-bootstrap";
-import Home from "../home/home";
-import CustomBreadcrumbs from "./breadcrumb/breadcrumb";
 import Header from "./header/header";
 import styles from "./layout.module.scss";
 import SideBar from "./side-bar/side_bar";
@@ -26,7 +24,6 @@ const Layout = ({ children,categoryName,tags }) => {
      
           <br />
 
-          {/* <CustomBreadcrumbs /> */}
           <div className={styles.body}>
             <Row>
               <Col sm={12} xl={8}>

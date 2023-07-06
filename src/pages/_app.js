@@ -22,6 +22,23 @@ export default function App({ Component, pageProps }) {
           </Script>
         </>
       )} */}
+      <script
+        async
+        src="https://upload-widget.cloudinary.com/global/all.js"
+        type="text/javascript"
+      ></script>
+
+      {/* <Script
+        src="https://upload-widget.cloudinary.com/global/all.js"
+        type="text/javascript"
+        id="cloudinary"
+      ></Script> */}
+
+      {/* <Script
+        src="//widget.cloudinary.com/global/all.js"
+        type="text/javascript"
+      />
+      <Script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></Script> */}
 
       <SessionProvider session={pageProps.session}>
         <SSRProvider>

@@ -10,27 +10,23 @@ const ThumbCard = (props) => {
   const { thumbData, isLoading } = props;
 
   return isLoading ? (
-      <Row className={styles.thumb_card}>
-        <Col xs={4}>
-          <TrenSkeleton height={100}/>
-        </Col>
-        
-        <Col xs={8}>
-          <TrenSkeleton height={40} customStyle={{marginBottom:'10px'}}/>
-          <TrenSkeleton height={20}/>
-          <TrenSkeleton height={20}/>
-         
-        </Col>
-      </Row>
+    <Row className={styles.thumb_card}>
+      <Col xs={4}>
+        <TrenSkeleton height={100} />
+      </Col>
+
+      <Col xs={8}>
+        <TrenSkeleton height={40} customStyle={{ marginBottom: "10px" }} />
+        <TrenSkeleton height={20} />
+        <TrenSkeleton height={20} />
+      </Col>
+    </Row>
   ) : (
     <Link href={`/article/${thumbData?.title}`}>
       <Row className={styles.thumb_card}>
         <Col xs={4}>
-          {/* <img src={thumbData?.bannerImage?.src} alt="xx"/> */}
           <Card.Img
             src={thumbData?.bannerImage?.src}
-            // height={100}
-            // width={100}
             alt={thumbData?.bannerImage?.name}
           />
         </Col>
